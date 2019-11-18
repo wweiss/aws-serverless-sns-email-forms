@@ -1,0 +1,23 @@
+{
+  "name": "aws-serverless-sns-email-forms",
+  "version": "0.1.0",
+  "description": "A serverless application to simplify emailing form submissions using SNS.",
+  "main": "index.js",
+  "author": "William Weiss <william@codification.org>",
+  "license": "MIT",
+  "private": false,
+  "prettier": "@codification/cutwater-build-core/includes/prettier-config",
+  "scripts": {
+    "clean": "gulp clean",
+    "test": "gulp test --clean",
+    "build": "gulp --clean --production"
+  },
+  "dependencies": {
+    "@codification/cutwater-build-core": "^0.5.0",
+    "@codification/cutwater-build-web": "^0.5.0",
+    "@types/aws-lambda": "^8.10.36",
+    "@types/node": "^12.12.8",
+    "aws-lambda": "^0.1.2",
+    "aws-sdk": "^2.573.0"
+  }
+}
