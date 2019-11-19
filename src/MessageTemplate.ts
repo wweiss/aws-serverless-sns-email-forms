@@ -1,9 +1,5 @@
-export interface TemplateModel {
-  [key: string]: string;
-}
+import { TemplateModel } from './TemplateModel';
 
-export class MessageTemplate {
-  public fill(templateName: string, templateValues: TemplateModel): string {
-    return 'Hello Ted Smith!';
-  }
+export interface MessageTemplate {
+  fill(templateValues: TemplateModel): string;
 }
