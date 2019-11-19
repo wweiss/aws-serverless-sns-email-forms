@@ -1,12 +1,12 @@
 import * as Mustache from 'mustache';
-import { AbstractDocumentBasedFactory } from './AbstractDocumentBasedFactory';
+import { DocumentLoaderBasedFactory } from './DocumentLoaderBasedFactory';
 import { MessageTemplate } from './MessageTemplate';
 import { TemplateFactory } from './TemplateFactory';
 import { TemplateModel } from './TemplateModel';
 
-export class MustacheTemplateFactory extends AbstractDocumentBasedFactory implements TemplateFactory {
+export class MustacheTemplateFactory extends DocumentLoaderBasedFactory implements TemplateFactory {
   public loadMessageTemplate(name: string): Promise<MessageTemplate> {
-    return this.loadDocument(name).then(document => {
+    return this.loadDocument(`${name}.mustache.txt`).then(document => {
       return new MustacheMessageTemplate(document);
     });
   }

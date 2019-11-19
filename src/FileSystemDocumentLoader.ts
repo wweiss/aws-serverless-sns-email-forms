@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { DocumentFactory } from './DocumentFactory';
+import { DocumentLoader } from './DocumentLoader';
 
-export class FileDocumentFactory implements DocumentFactory {
+export class FileSystemDocumentLoader implements DocumentLoader {
   private documentDirectory: string;
 
   constructor(documentDirectory: string) {

@@ -1,3 +1,3 @@
-export interface DocumentFactory {
+export interface DocumentLoader {
   loadDocument(name: string): Promise<string>;
 }

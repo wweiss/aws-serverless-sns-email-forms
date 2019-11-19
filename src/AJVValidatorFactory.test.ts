@@ -1,19 +1,20 @@
 import { AJVValidatorFactory } from './AJVValidatorFactory';
-import { FileDocumentFactory } from './FileDocumentFactory';
+import { AppConfig } from './AppConfig';
 import { TemplateModel } from './TemplateModel';
 import { Validator } from './Validator';
 import { ValidatorFactory } from './ValidatorFactory';
 
-const factory: ValidatorFactory = new AJVValidatorFactory(new FileDocumentFactory('./test'));
+const factory: ValidatorFactory = new AJVValidatorFactory(new AppConfig());
 let validator: Validator;
 
 beforeAll(() => {
-  return factory.loadValidator('test-template.json').then(result => (validator = result));
+  return factory.loadValidator('example').then(result => (validator = result));
 });
 
 describe('AJVValidatorFactory', () => {
-  it('can load a validator', () =>
-    factory.loadValidator('test-template.json').then(schema => expect(schema).toBeTruthy()));
+  it('can load a validator', () => {
+    return expect(factory.loadValidator('example')).resolves.toBeTruthy();
+  });
 });
 
 describe('Validator', () => {
@@ -23,24 +24,21 @@ describe('Validator', () => {
     subject: 'Hidden Pirate Treasure',
     message: 'Come on guys, it will be great!',
   };
-  it('properly validates a valid model', () =>
-    validator.validate(validModel).then(result => expect(result).toBeTruthy()));
+  it('properly validates a valid model', () => {
+    return expect(validator.validate(validModel)).resolves.toBeTruthy();
+  });
 
   const invalidModel: TemplateModel = {
     name: 'Mama Fratelli',
     email: 'fratelli.evil',
     message: 'In go the plump fingers...',
   };
-  it('properly rejects an invalid string value', () =>
-    validator
-      .validate(invalidModel)
-      .then()
-      .catch(err => expect(err).toBeTruthy()));
+  it('properly rejects an invalid string value', () => {
+    return expect(validator.validate(invalidModel)).rejects.toBeTruthy();
+  });
 
   invalidModel.email = 'ma@fratelli.co';
-  it('properly rejects a missing required field', () =>
-    validator
-      .validate(invalidModel)
-      .then()
-      .catch(err => expect(err).toBeTruthy()));
+  it('properly rejects a missing required field', () => {
+    return expect(validator.validate(invalidModel)).rejects.toBeTruthy();
+  });
 });

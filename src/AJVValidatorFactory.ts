@@ -1,11 +1,11 @@
 import * as Ajv from 'ajv';
-import { AbstractDocumentBasedFactory } from './AbstractDocumentBasedFactory';
+import { DocumentLoaderBasedFactory } from './DocumentLoaderBasedFactory';
 import { Validator } from './Validator';
 import { ValidatorFactory } from './ValidatorFactory';
 
-export class AJVValidatorFactory extends AbstractDocumentBasedFactory implements ValidatorFactory {
+export class AJVValidatorFactory extends DocumentLoaderBasedFactory implements ValidatorFactory {
   public loadValidator(name: string): Promise<Validator> {
-    return this.loadDocument(name).then(document => {
+    return this.loadDocument(`${name}.schema.json`).then(document => {
       return new AJVValidator(JSON.parse(document));
     });
   }

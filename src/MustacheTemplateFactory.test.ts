@@ -1,23 +1,22 @@
-import { FileDocumentFactory } from './FileDocumentFactory';
+import { AppConfig } from './AppConfig';
 import { MessageTemplate } from './MessageTemplate';
 import { MustacheTemplateFactory } from './MustacheTemplateFactory';
 import { TemplateFactory } from './TemplateFactory';
 
-const factory: TemplateFactory = new MustacheTemplateFactory(new FileDocumentFactory('./test'));
+const factory: TemplateFactory = new MustacheTemplateFactory(new AppConfig());
 let template: MessageTemplate;
 
 beforeAll(() => {
-  return factory.loadMessageTemplate('test-template.txt').then(result => (template = result));
+  return factory.loadMessageTemplate('test-template').then(result => (template = result));
 });
 
 describe('MustacheTemplateFactory', () => {
-  it('can load a mustache template', () =>
-    factory.loadMessageTemplate('test-template.txt').then(result => expect(result).toBeTruthy()));
-  it('returns rejection error when the template is missing', () =>
-    factory
-      .loadMessageTemplate('missing-template.txt')
-      .then()
-      .catch(err => expect(err).toBeTruthy()));
+  it('can load a mustache template', () => {
+    return expect(factory.loadMessageTemplate('test-template')).resolves.toBeTruthy();
+  });
+  it('returns rejection error when the template is missing', () => {
+    return expect(factory.loadMessageTemplate('missing-template')).rejects.toBeTruthy();
+  });
 });
 
 describe('MessageTemplate', () => {
