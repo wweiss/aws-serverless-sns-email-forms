@@ -13,11 +13,17 @@
     "build": "gulp --clean --production"
   },
   "dependencies": {
+    "@codification/cutwater-core": "^0.5.2",
+    "@codification/cutwater-logging": "^0.5.2",
+    "ajv": "^6.10.2",
+    "aws-lambda": "^0.1.2",
+    "google-recaptcha": "^1.1.0",
+    "mustache": "^3.1.0"
+  },
+  "devDependencies": {
     "@codification/cutwater-build-core": "^0.5.0",
     "@codification/cutwater-build-web": "^0.5.0",
     "@types/aws-lambda": "^8.10.36",
-    "@types/node": "^12.12.8",
-    "aws-lambda": "^0.1.2",
     "aws-sdk": "^2.573.0"
   }
 }
