@@ -30,15 +30,24 @@ describe('Validator', () => {
 
   const invalidModel: TemplateModel = {
     name: 'Mama Fratelli',
-    email: 'fratelli.evil',
+    email: 'fratelli.do',
     message: 'In go the plump fingers...',
   };
   it('properly rejects an invalid string value', () => {
-    return expect(validator.validate(invalidModel)).rejects.toBeTruthy();
+    return expect(validator.validate(invalidModel)).resolves.toStrictEqual({
+      isValid: false,
+      invalidFields: ['email'],
+      missingFields: ['subject'],
+    });
   });
 
-  invalidModel.email = 'ma@fratelli.co';
+  const anotherInvalidModel: TemplateModel = { ...invalidModel };
+  anotherInvalidModel.email = 'ma@fratelli.co';
   it('properly rejects a missing required field', () => {
-    return expect(validator.validate(invalidModel)).rejects.toBeTruthy();
+    return expect(validator.validate(anotherInvalidModel)).resolves.toStrictEqual({
+      isValid: false,
+      invalidFields: [],
+      missingFields: ['subject'],
+    });
   });
 });
