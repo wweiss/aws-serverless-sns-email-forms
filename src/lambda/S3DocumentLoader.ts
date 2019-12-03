@@ -1,8 +1,8 @@
 import { Logger, LoggerFactory } from '@codification/cutwater-logging';
 import { S3 } from 'aws-sdk';
 import { GetObjectRequest } from 'aws-sdk/clients/s3';
-import { AppConfig } from './AppConfig';
-import { DocumentLoader } from './DocumentLoader';
+import { AppConfig } from '../AppConfig';
+import { DocumentLoader } from '../DocumentLoader';
 
 const LOG: Logger = LoggerFactory.getLogger();
 

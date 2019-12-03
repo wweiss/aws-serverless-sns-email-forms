@@ -7,5 +7,5 @@ export interface ValidationResult {
 }
 
 export interface Validator {
-  validate(formModel: TemplateModel): Promise<ValidationResult>;
+  validate(model: TemplateModel): Promise<ValidationResult>;
 }
