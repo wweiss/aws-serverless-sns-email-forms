@@ -1,1 +1,1 @@
-{{ name }}<{{ email }}>; Subject: {{ subject }}; Message: {{ message }}
+{{ name }} says: {{ message }}

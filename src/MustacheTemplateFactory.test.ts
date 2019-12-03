@@ -1,9 +1,9 @@
-import { AppConfig } from './AppConfig';
 import { MessageTemplate } from './MessageTemplate';
 import { MustacheTemplateFactory } from './MustacheTemplateFactory';
 import { TemplateFactory } from './TemplateFactory';
+import { DOCUMENT_LOADER } from './TestConfig.test';
 
-const factory: TemplateFactory = new MustacheTemplateFactory(new AppConfig());
+const factory: TemplateFactory = new MustacheTemplateFactory(DOCUMENT_LOADER);
 let template: MessageTemplate;
 
 beforeAll(() => {

@@ -1,16 +1,9 @@
 {
     "required": [
-        "name","email","subject","message"
+        "name","message"
     ],
     "properties": {
         "name": {
-            "type": "string"
-        },
-        "email": {
-            "type": "string",
-            "format": "email"
-        },
-        "subject": {
             "type": "string"
         },
         "message": {

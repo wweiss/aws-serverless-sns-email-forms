@@ -1,5 +1,5 @@
 import { Validator } from './Validator';
 
 export interface ValidatorFactory {
-  loadValidator(name: string): Promise<Validator>;
+  loadValidator(schema: string | object): Promise<Validator>;
 }

@@ -1,14 +1,14 @@
 import { AJVValidatorFactory } from './AJVValidatorFactory';
-import { AppConfig } from './AppConfig';
-import { TemplateModel } from './TemplateModel';
+import { FileSystemDocumentLoader } from './FileSystemDocumentLoader';
+import { MessageCommandSchema } from './MessageCommand';
 import { Validator } from './Validator';
 import { ValidatorFactory } from './ValidatorFactory';
 
-const factory: ValidatorFactory = new AJVValidatorFactory(new AppConfig());
+const factory: ValidatorFactory = new AJVValidatorFactory(new FileSystemDocumentLoader('./test'));
 let validator: Validator;
 
 beforeAll(() => {
-  return factory.loadValidator('example').then(result => (validator = result));
+  return factory.loadValidator(MessageCommandSchema).then(result => (validator = result));
 });
 
 describe('AJVValidatorFactory', () => {
@@ -18,33 +18,38 @@ describe('AJVValidatorFactory', () => {
 });
 
 describe('Validator', () => {
-  const validModel: TemplateModel = {
-    name: 'Mike Walsh',
-    email: 'mike@goonies.net',
+  const validCommand: any = {
+    from: 'mike@goonies.net',
     subject: 'Hidden Pirate Treasure',
-    message: 'Come on guys, it will be great!',
+    messageModel: {
+      name: 'Mike Walsh',
+      message: 'Come on guys, it will be great!',
+    },
   };
-  it('properly validates a valid model', () => {
-    return expect(validator.validate(validModel)).resolves.toBeTruthy();
+  it('properly validates a valid message command', () => {
+    return expect(validator.validate(validCommand)).resolves.toBeTruthy();
   });
 
-  const invalidModel: TemplateModel = {
-    name: 'Mama Fratelli',
-    email: 'fratelli.do',
-    message: 'In go the plump fingers...',
+  const invalidCommand: any = {
+    from: 'fratelli.do',
+    messageModel: {
+      name: 'Mama Fratelli',
+      message: 'In go the plump fingers...',
+    },
   };
-  it('properly rejects an invalid string value', () => {
-    return expect(validator.validate(invalidModel)).resolves.toStrictEqual({
+  it('properly rejects an invalid string email address and missing fields', () => {
+    return expect(validator.validate(invalidCommand)).resolves.toStrictEqual({
       isValid: false,
-      invalidFields: ['email'],
-      missingFields: ['subject'],
+      invalidFields: ['from'],
+      missingFields: ['form', 'subject'],
     });
   });
 
-  const anotherInvalidModel: TemplateModel = { ...invalidModel };
-  anotherInvalidModel.email = 'ma@fratelli.co';
+  const anotherInvalidCommand: any = { ...invalidCommand };
+  anotherInvalidCommand.form = 'goonies';
+  anotherInvalidCommand.from = 'ma@fratelli.co';
   it('properly rejects a missing required field', () => {
-    return expect(validator.validate(anotherInvalidModel)).resolves.toStrictEqual({
+    return expect(validator.validate(anotherInvalidCommand)).resolves.toStrictEqual({
       isValid: false,
       invalidFields: [],
       missingFields: ['subject'],

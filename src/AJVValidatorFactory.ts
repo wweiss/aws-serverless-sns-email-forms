@@ -1,15 +1,20 @@
 import * as Ajv from 'ajv';
 import { DocumentLoaderBasedFactory } from './DocumentLoaderBasedFactory';
+import { TemplateModel } from './TemplateModel';
 import { ValidationResult, Validator } from './Validator';
 import { ValidatorFactory } from './ValidatorFactory';
 
 const MISSING_PROPERTY: string = 'missingProperty';
 
 export class AJVValidatorFactory extends DocumentLoaderBasedFactory implements ValidatorFactory {
-  public loadValidator(name: string): Promise<Validator> {
-    return this.loadDocument(`${name}.schema.json`).then(document => {
-      return new AJVValidator(JSON.parse(document));
-    });
+  public loadValidator(schema: string | object): Promise<Validator> {
+    if (typeof schema === 'object') {
+      return Promise.resolve(new AJVValidator(schema));
+    } else {
+      return this.loadDocument(`${schema}.schema.json`).then(document => {
+        return new AJVValidator(JSON.parse(document));
+      });
+    }
   }
 }
 
@@ -22,23 +27,22 @@ class AJVValidator implements Validator {
     this.validator = ajv.compile(schema);
   }
 
-  public validate(formData: object): Promise<ValidationResult> {
-    const isValid = this.validator(formData);
+  public validate(model: TemplateModel): Promise<ValidationResult> {
+    const isValid = this.validator(model);
     if (typeof isValid === 'boolean') {
-      const result = this.toValidationResult(isValid);
-      return Promise.resolve(result);
+      return this.toValidationResult(isValid);
     } else {
-      return Promise.resolve(isValid.then(result => this.toValidationResult(result)));
+      return isValid.then(result => this.toValidationResult(result)) as Promise<ValidationResult>;
     }
   }
 
-  private toValidationResult(isValid: boolean): ValidationResult {
+  private toValidationResult(isValid: boolean): Promise<ValidationResult> {
     const rval: ValidationResult = { isValid, invalidFields: [], missingFields: [] };
     if (this.validator.errors) {
       rval.invalidFields = this.toInvalidFields(this.validator.errors);
       rval.missingFields = this.toMissingFields(this.validator.errors);
     }
-    return rval;
+    return Promise.resolve(rval);
   }
 
   private toInvalidFields(errors: Ajv.ErrorObject[]): string[] {

@@ -1,13 +1,9 @@
-import { AppConfig } from './AppConfig';
+import { DocumentLoader } from './DocumentLoader';
 
 export abstract class DocumentLoaderBasedFactory {
-  protected config: AppConfig;
-
-  constructor(config: AppConfig) {
-    this.config = config;
-  }
+  constructor(private documentLoader: DocumentLoader) {}
 
   protected loadDocument(documentName: string): Promise<string> {
-    return this.config.documentLoader.loadDocument(documentName);
+    return this.documentLoader.loadDocument(documentName);
   }
 }

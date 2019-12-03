@@ -1,19 +1,15 @@
-import { AppConfig } from './AppConfig';
 import { MessageCommand } from './MessageCommand';
 import { MessageTemplate } from './MessageTemplate';
+import { TemplateFactory } from './TemplateFactory';
 import { TemplateModel } from './TemplateModel';
 
 export class MessageTransformer {
-  private config: AppConfig;
-
-  public constructor(config: AppConfig) {
-    this.config = config;
-  }
+  public constructor(private templateFactory: TemplateFactory) {}
 
   public transform(cmd: MessageCommand): Promise<string> {
-    return this.config.templateFactory
+    return this.templateFactory
       .loadMessageTemplate(cmd.form)
-      .then(template => this.fillTemplate(template, cmd.messageModel));
+      .then(template => this.fillTemplate(template, { from: cmd.from, subject: cmd.subject, ...cmd.messageModel }));
   }
 
   private fillTemplate(template: MessageTemplate, model: TemplateModel): string {
