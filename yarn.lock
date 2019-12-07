@@ -138,10 +138,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@codification/cutwater-build-core@^0.5.0", "@codification/cutwater-build-core@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-core/-/cutwater-build-core-0.5.2.tgz#c576fbe3c49c0c49f7adaa5996f0a3eebff7c01a"
-  integrity sha512-aj5rTmlKp0sKboFHy7M0VzptOqMAJgNlnIZI9pRGVyBkKm52cuBRKqr5f53apnXv+sDXp5eINMNe2y82kcIN9g==
+"@codification/cutwater-build-core@^0.5.0", "@codification/cutwater-build-core@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-core/-/cutwater-build-core-0.5.5.tgz#ccd1fbef09be81120fc68bb2ebdc7a7fefed6cde"
+  integrity sha512-XB+XGs3HQoQP93xiRwm880Xgox26lFnLKTsrrQ9GdFg0aHpWfn3GXuJ6gbZ0l6WbPDbXFUu7r5V/+DdIDnE8HQ==
   dependencies:
     "@types/gulp" "^4.0.6"
     "@types/jest" "^24.0.18"
@@ -163,20 +163,20 @@
     vinyl "^2.2.0"
     yargs "^14.0.0"
 
-"@codification/cutwater-build-node@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-node/-/cutwater-build-node-0.5.3.tgz#098235b24294e8e12352006a3b8a029846560b73"
-  integrity sha512-kJT8rV9F2PXUZmNAmehF90BcDgSyRxDn3czGsjtJcTkSQVg/X4PzssspnbK17PpVbLcAOy1YKsmhEEh2H6OMGQ==
+"@codification/cutwater-build-node@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-node/-/cutwater-build-node-0.5.5.tgz#6fe99e9f467a0cbc3a5555d71ed3f4e7498e21e3"
+  integrity sha512-cjA+GekMsY67xbnshSPUFxYotvC0/KuxkwOt5EPKT/pHDHchvaovM6JTqC5NDp531LJo0GO+v1qE7o8gDapexQ==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.2"
-    "@codification/cutwater-build-typescript" "^0.5.3"
+    "@codification/cutwater-build-core" "^0.5.5"
+    "@codification/cutwater-build-typescript" "^0.5.5"
 
-"@codification/cutwater-build-typescript@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-typescript/-/cutwater-build-typescript-0.5.3.tgz#c9f3b730073e070c3b5f0cb469341ee850591834"
-  integrity sha512-OBjw6EIQyuQri16HSRkbto9Cp55BqkewXC9fkIEggfCehPsZ5WldP7bQqG8MgvexTmsEkgVEq3BevAfWho+IHQ==
+"@codification/cutwater-build-typescript@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-typescript/-/cutwater-build-typescript-0.5.5.tgz#2584ef8d9e44f43ad555fd983fcec0bee2c3eea1"
+  integrity sha512-Y9KuCgxuYjv7LThqX29DIWv9UEMvgVcs9Z5zTXjGWZQO+iAnYa9ii+cv4RNRBpkgFwj0jl23ch+J2bbs6oKOAw==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.2"
+    "@codification/cutwater-build-core" "^0.5.5"
     gulp-sourcemaps "^2.6.5"
     gulp-tslint "^8.1.4"
     gulp-typescript "^5.0.1"
@@ -186,40 +186,40 @@
     typescript "^3.5.2"
 
 "@codification/cutwater-build-web@^0.5.0":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-web/-/cutwater-build-web-0.5.3.tgz#152282f8c58b46d475c9fa09e9e122c75240f17b"
-  integrity sha512-Gs6K2xYn9qi9ujANLsLzawUxuwOjrJFnDo30F2hrAmM7yIUQ2KQZ+pNLwZeG4WUUy8zd5C1QSxLAApz9c4PGoQ==
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-web/-/cutwater-build-web-0.5.5.tgz#19a34cf955a05815aed487ea20f971810786974d"
+  integrity sha512-l1ZkuIsUN7h3IZKdvHft/zSKMkHDD6ZvCn3sjmRdOZ6YUgcF/PY/5aQv5J/f4DIQA30KK64HCoIhienUprcucg==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.2"
-    "@codification/cutwater-build-node" "^0.5.3"
-    "@codification/cutwater-build-webpack" "^0.5.3"
+    "@codification/cutwater-build-core" "^0.5.5"
+    "@codification/cutwater-build-node" "^0.5.5"
+    "@codification/cutwater-build-webpack" "^0.5.5"
 
-"@codification/cutwater-build-webpack@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-webpack/-/cutwater-build-webpack-0.5.3.tgz#b59fe99196a837fd4243fb9a49f8884a6be41739"
-  integrity sha512-Tn/PGTqusObTMDSh+rsXzDECJRpfB+phTLTzfr43pOccg3QJEm66PffHAQsUlhcXsb9lex80onHGPVbOJrtQ6w==
+"@codification/cutwater-build-webpack@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-webpack/-/cutwater-build-webpack-0.5.5.tgz#bf13ddde217c394d0be7a7aec8ffa8322990baca"
+  integrity sha512-YXrpOqL/8TpcsL4vm8Zo31zL1cc4MEIeIHgRm3o3onZcKfIDamZASyr+Bn4ec/Oyumm8M93unl/Y+FY4NiqiCQ==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.2"
-    "@codification/cutwater-build-node" "^0.5.3"
+    "@codification/cutwater-build-core" "^0.5.5"
+    "@codification/cutwater-build-node" "^0.5.5"
     colors "^1.4.0"
     terser-webpack-plugin "^1.4.1"
     webpack "^4.39.2"
 
-"@codification/cutwater-core@^0.5.2", "@codification/cutwater-core@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-core/-/cutwater-core-0.5.3.tgz#35e59ed94289246c526ce52cb73d14f53e18fb6c"
-  integrity sha512-LlpH6YVOEJrHlH2SsEBYSgkppXVwgqdceCv+nvlDkABqHziphAshdrVvUr5qT/6/obnD+OjBPM4rr7skUbKNFw==
+"@codification/cutwater-core@^0.5.2", "@codification/cutwater-core@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-core/-/cutwater-core-0.5.5.tgz#288a7b59a080ed46e355b6bab93c7590683a7245"
+  integrity sha512-yvVeKbIURLnOkNjiVKik2O73La9g8T4zpO7nju31bACiOluXKTmq8425KqhxpH2sKZ9YP640rDPkw6fYDkr8cA==
   dependencies:
     date-fns "^1.29.0"
   optionalDependencies:
     rxjs "^6.4.0"
 
 "@codification/cutwater-logging@^0.5.2":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-logging/-/cutwater-logging-0.5.3.tgz#36a475dfcb2f5bf809d9d7a8fe20737bab8bceb0"
-  integrity sha512-8DayCLohi8CXafa0wwYPv1a0vBmKXGJwpBjLgAeFPdSZuFo1ea3l9ADJlBSstOLS8m3UEA41FORXUSYLxY8BwQ==
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-logging/-/cutwater-logging-0.5.5.tgz#395d67277f3c1da1becee0b67667cf0da8561e00"
+  integrity sha512-RijAoeF98U5ovK7eIVRIfmXZlEuyreEqjDIoQV26ke6rY8QaPvG70Db466DMJ8sYa5I2HDB4xg/60ForZp3TxA==
   dependencies:
-    "@codification/cutwater-core" "^0.5.3"
+    "@codification/cutwater-core" "^0.5.5"
 
 "@gulp-sourcemaps/identity-map@1.X":
   version "1.0.2"

@@ -6,6 +6,7 @@ const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin"); const webpackTask = require('@codification/cutwater-build-webpack').webpack;
 const isProduction = webpackTask.buildConfig.production;
 const webpackConfiguration = {
+    mode: isProduction ? 'production' : 'development',
     context: __dirname,
     devtool: (isProduction) ? undefined : 'source-map',
     entry: {
@@ -14,7 +15,7 @@ const webpackConfiguration = {
     output: {
         libraryTarget: 'umd',
         path: path.join(__dirname, webpackTask.buildConfig.distFolder),
-        filename: `[name]${isProduction ? '.min' : ''}.js`,
+        filename: `[name].js`,
         globalObject: 'this',
     },
     devServer: {
@@ -23,20 +24,14 @@ const webpackConfiguration = {
     externals: {
         'aws-sdk': {
             amd: 'aws-sdk',
-            commonjs: 'aws-sdk'
-        },
-        'react': {
-            amd: 'react',
-            commonjs: 'react'
-        },
-        'react-dom': {
-            amd: 'react-dom',
-            commonjs: 'react-dom'
+            commonjs: 'aws-sdk',
+            commonjs2: 'aws-sdk'
         }
     },
     optimization: {
         minimizer: [],
     },
+    target: 'node'
 };
 if (isProduction && webpackConfiguration.optimization && webpackConfiguration.optimization.minimizer) {
     webpackConfiguration.optimization.minimizer.push(
@@ -50,5 +45,4 @@ if (isProduction && webpackConfiguration.optimization && webpackConfiguration.op
         }),
     );
 }
-console.log(JSON.stringify(webpackConfiguration,null,2));
 module.exports = webpackConfiguration;

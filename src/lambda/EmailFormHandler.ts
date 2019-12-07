@@ -17,7 +17,7 @@ const messageFactory: MessageFactory = new ValidatingMessageFactory(validator, n
 const messageSender: MessageSender = new SNSMessageSender();
 const sender: EmailFormSender = new EmailFormSender(messageFactory, messageSender);
 
-exports.handler = (event: APIGatewayProxyEvent, context: Context, callback: ProxyCallback) => {
+export const handler = (event: APIGatewayProxyEvent, context: Context, callback: ProxyCallback) => {
   const msgCommand: MessageCommand = JSON.parse(event.body || '');
 
   sender
