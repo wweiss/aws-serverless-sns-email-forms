@@ -1,10 +1,9 @@
+import { MessageCommandSchema } from '../MessageCommand';
+import { DOCUMENT_LOADER } from '../TestConfig.test';
 import { AJVValidatorFactory } from './AJVValidatorFactory';
-import { FileSystemDocumentLoader } from './FileSystemDocumentLoader';
-import { MessageCommandSchema } from './MessageCommand';
-import { Validator } from './Validator';
-import { ValidatorFactory } from './ValidatorFactory';
+import { Validator, ValidatorFactory } from './ValidatorFactory';
 
-const factory: ValidatorFactory = new AJVValidatorFactory(new FileSystemDocumentLoader('./test'));
+const factory: ValidatorFactory = new AJVValidatorFactory(DOCUMENT_LOADER);
 let validator: Validator;
 
 beforeAll(() => {
@@ -19,6 +18,7 @@ describe('AJVValidatorFactory', () => {
 
 describe('Validator', () => {
   const validCommand: any = {
+    form: 'example',
     from: 'mike@goonies.net',
     subject: 'Hidden Pirate Treasure',
     messageModel: {
@@ -27,7 +27,7 @@ describe('Validator', () => {
     },
   };
   it('properly validates a valid message command', () => {
-    return expect(validator.validate(validCommand)).resolves.toBeTruthy();
+    return expect(validator.validate(validCommand)).resolves.toBeUndefined();
   });
 
   const invalidCommand: any = {
@@ -38,8 +38,7 @@ describe('Validator', () => {
     },
   };
   it('properly rejects an invalid string email address and missing fields', () => {
-    return expect(validator.validate(invalidCommand)).resolves.toStrictEqual({
-      isValid: false,
+    return expect(validator.validate(invalidCommand)).rejects.toStrictEqual({
       invalidFields: ['from'],
       missingFields: ['form', 'subject'],
     });
@@ -49,8 +48,7 @@ describe('Validator', () => {
   anotherInvalidCommand.form = 'goonies';
   anotherInvalidCommand.from = 'ma@fratelli.co';
   it('properly rejects a missing required field', () => {
-    return expect(validator.validate(anotherInvalidCommand)).resolves.toStrictEqual({
-      isValid: false,
+    return expect(validator.validate(anotherInvalidCommand)).rejects.toStrictEqual({
       invalidFields: [],
       missingFields: ['subject'],
     });

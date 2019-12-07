@@ -1,11 +1,14 @@
-import { ComposedMessageFactory } from './ComposedMessageFactory';
-import { Message } from './Message';
-import { MessageCommand } from './MessageCommand';
-import { MessageFactory } from './MessageFactory';
-import { MESSAGE_TRANSFORMER, VALIDATOR_FACTORY } from './TestConfig.test';
+import { MessageCommand } from '../MessageCommand';
+import { MESSAGE_TRANSFORMER, VALIDATOR_FACTORY } from '../TestConfig.test';
+import { MessageValidator } from '../validate';
+import { Message, MessageFactory } from './MessageFactory';
+import { ValidatingMessageFactory } from './ValidatingMessageFactory';
 
-describe('ComposedMessageFactory class', () => {
-  const msgFactory: MessageFactory = new ComposedMessageFactory(VALIDATOR_FACTORY, MESSAGE_TRANSFORMER);
+describe('ValidatingMessageFactory class', () => {
+  const msgFactory: MessageFactory = new ValidatingMessageFactory(
+    new MessageValidator(VALIDATOR_FACTORY),
+    MESSAGE_TRANSFORMER,
+  );
 
   const validCommand: MessageCommand = {
     form: 'example',
@@ -38,8 +41,7 @@ describe('ComposedMessageFactory class', () => {
   };
 
   it('returns validation errors for invalid email address', () => {
-    return expect(msgFactory.createMessage(badEmailCommand)).resolves.toStrictEqual({
-      isValid: false,
+    return expect(msgFactory.createMessage(badEmailCommand)).rejects.toStrictEqual({
       invalidFields: ['from'],
       missingFields: [],
     });
@@ -55,8 +57,7 @@ describe('ComposedMessageFactory class', () => {
   };
 
   it('returns validation errors for missing model fields', () => {
-    return expect(msgFactory.createMessage(missingModelFieldCommand)).resolves.toStrictEqual({
-      isValid: false,
+    return expect(msgFactory.createMessage(missingModelFieldCommand)).rejects.toStrictEqual({
       invalidFields: [],
       missingFields: ['name'],
     });

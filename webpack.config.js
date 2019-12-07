@@ -9,7 +9,7 @@ const webpackConfiguration = {
     context: __dirname,
     devtool: (isProduction) ? undefined : 'source-map',
     entry: {
-        'sns-email-forms': path.join(__dirname, webpackTask.buildConfig.libFolder, 'index.js')
+        'sns-email-forms': path.join(__dirname, webpackTask.buildConfig.libFolder, 'lambda', 'EmailFormHandler.js')
     },
     output: {
         libraryTarget: 'umd',
@@ -50,4 +50,5 @@ if (isProduction && webpackConfiguration.optimization && webpackConfiguration.op
         }),
     );
 }
+console.log(JSON.stringify(webpackConfiguration,null,2));
 module.exports = webpackConfiguration;

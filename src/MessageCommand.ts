@@ -1,11 +1,11 @@
-import { TemplateModel } from './TemplateModel';
+import { NameValueModel } from './NameValueModel';
 
-export interface MessageCommand {
+export interface MessageCommand extends NameValueModel {
   form: string;
   token?: string;
   from: string;
   subject: string;
-  messageModel: TemplateModel;
+  messageModel: NameValueModel;
 }
 
 export const MessageCommandSchema: any = {

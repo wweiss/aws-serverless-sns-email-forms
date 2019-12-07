@@ -1,7 +1,6 @@
-import { MessageTemplate } from './MessageTemplate';
+import { DOCUMENT_LOADER } from '../TestConfig.test';
 import { MustacheTemplateFactory } from './MustacheTemplateFactory';
-import { TemplateFactory } from './TemplateFactory';
-import { DOCUMENT_LOADER } from './TestConfig.test';
+import { MessageTemplate, TemplateFactory } from './TemplateFactory';
 
 const factory: TemplateFactory = new MustacheTemplateFactory(DOCUMENT_LOADER);
 let template: MessageTemplate;

@@ -1,8 +1,7 @@
 import * as Ajv from 'ajv';
-import { DocumentLoaderBasedFactory } from './DocumentLoaderBasedFactory';
-import { TemplateModel } from './TemplateModel';
-import { ValidationResult, Validator } from './Validator';
-import { ValidatorFactory } from './ValidatorFactory';
+import { DocumentLoaderBasedFactory } from '../document';
+import { NameValueModel } from '../NameValueModel';
+import { ValidationFailure, Validator, ValidatorFactory } from './ValidatorFactory';
 
 const MISSING_PROPERTY: string = 'missingProperty';
 
@@ -27,22 +26,23 @@ class AJVValidator implements Validator {
     this.validator = ajv.compile(schema);
   }
 
-  public validate(model: TemplateModel): Promise<ValidationResult> {
+  public validate(model: NameValueModel): Promise<void> {
     const isValid = this.validator(model);
     if (typeof isValid === 'boolean') {
       return this.toValidationResult(isValid);
     } else {
-      return isValid.then(result => this.toValidationResult(result)) as Promise<ValidationResult>;
+      return isValid.then(result => this.toValidationResult(result)) as Promise<void>;
     }
   }
 
-  private toValidationResult(isValid: boolean): Promise<ValidationResult> {
-    const rval: ValidationResult = { isValid, invalidFields: [], missingFields: [] };
+  private toValidationResult(isValid: boolean): Promise<void> {
     if (this.validator.errors) {
+      const rval: ValidationFailure = { invalidFields: [], missingFields: [] };
       rval.invalidFields = this.toInvalidFields(this.validator.errors);
       rval.missingFields = this.toMissingFields(this.validator.errors);
+      return Promise.reject(rval);
     }
-    return Promise.resolve(rval);
+    return Promise.resolve();
   }
 
   private toInvalidFields(errors: Ajv.ErrorObject[]): string[] {

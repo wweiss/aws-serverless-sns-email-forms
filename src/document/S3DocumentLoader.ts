@@ -2,21 +2,16 @@ import { Logger, LoggerFactory } from '@codification/cutwater-logging';
 import { S3 } from 'aws-sdk';
 import { GetObjectRequest } from 'aws-sdk/clients/s3';
 import { AppConfig } from '../AppConfig';
-import { DocumentLoader } from '../DocumentLoader';
+import { DocumentLoader } from './DocumentLoader';
 
 const LOG: Logger = LoggerFactory.getLogger();
 
 export class S3DocumentLoader implements DocumentLoader {
   private readonly s3 = new S3();
-  private config: AppConfig;
-
-  constructor(config: AppConfig) {
-    this.config = config;
-  }
 
   public loadDocument(name: string): Promise<string> {
     const req: GetObjectRequest = {
-      Bucket: this.config.templateBucketName,
+      Bucket: AppConfig.templateBucketName,
       Key: name,
     };
     return new Promise((resolve, reject) => {

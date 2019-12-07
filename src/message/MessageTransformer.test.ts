@@ -1,6 +1,6 @@
-import { MessageCommand } from './MessageCommand';
+import { MessageCommand } from '../MessageCommand';
+import { TEMPLATE_FACTORY } from '../TestConfig.test';
 import { MessageTransformer } from './MessageTransformer';
-import { TEMPLATE_FACTORY } from './TestConfig.test';
 
 const transformer: MessageTransformer = new MessageTransformer(TEMPLATE_FACTORY);
 const validMsgCommand: MessageCommand = {
@@ -21,7 +21,15 @@ const alternateMsgCommand: MessageCommand = {
     message: 'I have an idea...',
   },
 };
-
+const invalidMsgCommand: MessageCommand = {
+  form: 'xample',
+  from: 'lex@luthorcorp.net',
+  subject: 'Line it with Lead',
+  messageModel: {
+    name: 'Lex Luthor',
+    message: 'I have an idea...',
+  },
+};
 describe('MessageTransformer class', () => {
   it('can return a string from a valid command', () => {
     return expect(transformer.transform(validMsgCommand)).resolves.toBeTruthy();
@@ -33,5 +41,8 @@ describe('MessageTransformer class', () => {
   });
   it('can correctly transform an alternate valid command', () => {
     return expect(transformer.transform(alternateMsgCommand)).resolves.toBe('Lex Luthor says: I have an idea...');
+  });
+  it('can correctly rejects a command with an invalid form', () => {
+    return expect(transformer.transform(invalidMsgCommand)).rejects.toBeTruthy();
   });
 });

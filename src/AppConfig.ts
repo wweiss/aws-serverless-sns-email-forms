@@ -1,9 +1,19 @@
 import { Config } from '@codification/cutwater-core';
 
 export class AppConfig {
-  public readonly templateBucketName: string = Config.get('TEMPLATE_BUCKET_NAME');
-  public readonly snsTopicARN: string = Config.get('SNS_TOPIC_ARN');
+  public static get templateBucketName(): string {
+    return Config.get('TEMPLATE_BUCKET_NAME');
+  }
 
-  public readonly recaptchaSecretKey: string = Config.get('RECAPTCHA_SECRET_KEY');
-  public readonly isRecaptchaEnabled: boolean = Config.get('DISABLE_RECAPTCHA', 'false').toLocaleLowerCase() !== 'true';
+  public static get snsTopicARN(): string {
+    return Config.get('SNS_TOPIC_ARN');
+  }
+
+  public static get recaptchaSecretKey(): string {
+    return Config.get('RECAPTCHA_SECRET_KEY');
+  }
+
+  public static get isReCaptchaEnabled(): boolean {
+    return Config.get('RECAPTCHA_ENABLED', 'false').toLocaleLowerCase() === 'true';
+  }
 }

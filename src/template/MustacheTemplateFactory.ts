@@ -1,8 +1,7 @@
 import * as Mustache from 'mustache';
-import { DocumentLoaderBasedFactory } from './DocumentLoaderBasedFactory';
-import { MessageTemplate } from './MessageTemplate';
-import { TemplateFactory } from './TemplateFactory';
-import { TemplateModel } from './TemplateModel';
+import { DocumentLoaderBasedFactory } from '../document';
+import { NameValueModel } from '../NameValueModel';
+import { MessageTemplate, TemplateFactory } from './TemplateFactory';
 
 export class MustacheTemplateFactory extends DocumentLoaderBasedFactory implements TemplateFactory {
   public loadMessageTemplate(name: string): Promise<MessageTemplate> {
@@ -21,7 +20,7 @@ class MustacheMessageTemplate implements MessageTemplate {
     Mustache.parse(template);
   }
 
-  public fill(model: TemplateModel): string {
+  public fill(model: NameValueModel): string {
     return Mustache.render(this.template, model);
   }
 }

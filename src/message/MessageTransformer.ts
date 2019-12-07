@@ -1,7 +1,6 @@
-import { MessageCommand } from './MessageCommand';
-import { MessageTemplate } from './MessageTemplate';
-import { TemplateFactory } from './TemplateFactory';
-import { TemplateModel } from './TemplateModel';
+import { MessageCommand } from '../MessageCommand';
+import { NameValueModel } from '../NameValueModel';
+import { MessageTemplate, TemplateFactory } from '../template';
 
 export class MessageTransformer {
   public constructor(private templateFactory: TemplateFactory) {}
@@ -12,7 +11,7 @@ export class MessageTransformer {
       .then(template => this.fillTemplate(template, { from: cmd.from, subject: cmd.subject, ...cmd.messageModel }));
   }
 
-  private fillTemplate(template: MessageTemplate, model: TemplateModel): string {
+  private fillTemplate(template: MessageTemplate, model: NameValueModel): string {
     return template.fill(model);
   }
 }
