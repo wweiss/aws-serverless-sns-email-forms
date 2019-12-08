@@ -53,4 +53,19 @@ describe('Validator', () => {
       missingFields: ['subject'],
     });
   });
+
+  const extraFieldModel: any = {
+    name: 'Mike Walsh',
+    address: '123 Washoe St.',
+    message: 'Come on guys, it will be great!',
+  };
+
+  it('properly rejects a message with extra fields', () => {
+    return expect(
+      factory.loadValidator('example').then(result => result.validate(extraFieldModel)),
+    ).rejects.toStrictEqual({
+      invalidFields: ['address'],
+      missingFields: [],
+    });
+  });
 });
