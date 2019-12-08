@@ -5,6 +5,23 @@ import { VALIDATOR_FACTORY } from '../TestConfig.test';
 describe('MessageValidator class', () => {
   const validator: MessageValidator = new MessageValidator(VALIDATOR_FACTORY);
 
+  const invalidFormCommand: MessageCommand = {
+    form: 'doesNotExist',
+    from: 'ma@baddies.net',
+    subject: 'We got the Kid!',
+    messageModel: {
+      name: 'Mama Fratelli',
+      message: 'In go the plump fingers...',
+    },
+  };
+
+  it('will reject commands with missing template data', () => {
+    return expect(validator.validate(invalidFormCommand)).rejects.toStrictEqual({
+      invalidFields: ['form'],
+      missingFields: [],
+    });
+  });
+
   const validCommand: MessageCommand = {
     form: 'example',
     from: 'ma@baddies.net',

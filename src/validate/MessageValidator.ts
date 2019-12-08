@@ -25,12 +25,14 @@ export class MessageValidator implements Validator {
     model: any,
   ): Promise<MessageCommand> {
     return new Promise((resolve, reject) => {
-      this.toValidator(schema).then(validator => {
-        return validator
-          .validate(model)
-          .then(() => resolve(cmd))
-          .catch(failure => reject(failure));
-      });
+      this.toValidator(schema)
+        .then(validator => {
+          return validator
+            .validate(model)
+            .then(() => resolve(cmd))
+            .catch(failure => reject(failure));
+        })
+        .catch(error => reject({ invalidFields: ['form'], missingFields: [] }));
     });
   }
 
