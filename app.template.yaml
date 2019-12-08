@@ -1,0 +1,82 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Parameters:
+  RecipientEmailAddress:
+    Type: String
+    Description: Email address to receive the form submissions.
+  TemplateBucketName:
+    Type: String
+    Description: Name of the S3 Bucket containing the email templates and form validation JSON schemas.
+  CorsDomain:
+    Type: String
+    Default: '*'
+    Description: (Optional) Name of domain to be allowed access to the service.  All domains allowed by default.
+  RecaptchaEnabled:
+    Type: String
+    AllowedValues: 
+      - 'true'
+      - 'false'
+    Default: 'false'
+    Description: (Optional) Flag indicating if a Google Recaptcha token should be validated.
+  RecaptchaSecretKey:
+    Type: String
+    Default: ''
+    NoEcho: true
+    Description: (Optional) Secret key for use with Google Recaptcha.
+
+Globals:
+  Function:
+    Runtime: nodejs10.x
+    Tracing: Active
+    MemorySize: 512
+    Timeout: 60
+    Environment:
+      Variables:
+        TEMPLATE_BUCKET_NAME: !Ref TemplateBucket
+        RECAPTCHA_ENABLED: !Ref RecaptchaEnabled
+        RECAPTCHA_SECRET_KEY: !Ref RecaptchaSecretKey
+        SNS_TOPIC_ARN: !Ref EmailFormsSNSTopic   
+
+Resources:
+  TemplateBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref TemplateBucketName
+
+  RestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+
+  EmailFormsHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./dist/sns-email-forms.js
+      Handler: sns-email-forms.handler
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref TemplateBucket
+        - SNSPublishMessagePolicy:
+            TopicName: !GetAtt EmailFormsSNSTopic.TopicName
+      Events:
+        EmailFormApi:
+          Type: Api
+          Properties:
+            Method: POST
+            Path: /send
+            RestApiId: !Ref RestApi
+  EmailFormsSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint: !Ref RecipientEmailAddress
+          Protocol: 'email'
+
+Outputs:
+  ApiId:
+    Value: !Ref RestApi
+  ApiDomainName:
+    Value: !Sub '${RestApi}.execute-api.${AWS::Region}.amazonaws.com'
+  FunctionArn:
+    Value: !GetAtt EmailFormsHandler.Arn
