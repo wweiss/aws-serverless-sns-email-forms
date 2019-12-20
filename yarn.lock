@@ -138,10 +138,18 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@codification/cutwater-build-core@^0.5.0", "@codification/cutwater-build-core@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-core/-/cutwater-build-core-0.5.5.tgz#ccd1fbef09be81120fc68bb2ebdc7a7fefed6cde"
-  integrity sha512-XB+XGs3HQoQP93xiRwm880Xgox26lFnLKTsrrQ9GdFg0aHpWfn3GXuJ6gbZ0l6WbPDbXFUu7r5V/+DdIDnE8HQ==
+"@codification/cutwater-build-aws@^0.6.0":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-aws/-/cutwater-build-aws-0.6.1.tgz#6c63af274150710e99b2eef037136cd157c56998"
+  integrity sha512-pDlG+B/iNW168u1bG1z9pFmLNEz/9BK8nqAEY+lwVswy0DxSUybNHU31L3jfi8vZOKIH9KNL9S1fZJ6jVnCL7A==
+  dependencies:
+    "@codification/cutwater-build-core" "^0.6.1"
+    "@codification/cutwater-build-node" "^0.6.1"
+
+"@codification/cutwater-build-core@^0.6.0", "@codification/cutwater-build-core@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-core/-/cutwater-build-core-0.6.1.tgz#570577cd95196e3b2d361463ef162f0d5a955d7c"
+  integrity sha512-FwiYeIoqhQezmCiwZvPIVpbZk77V03gimVx7Ojo4PmYb/5JXkUdjGpfu5CZE4hQflHzStb956hWsf5yCx0juFA==
   dependencies:
     "@types/gulp" "^4.0.6"
     "@types/jest" "^24.0.18"
@@ -163,20 +171,20 @@
     vinyl "^2.2.0"
     yargs "^14.0.0"
 
-"@codification/cutwater-build-node@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-node/-/cutwater-build-node-0.5.5.tgz#6fe99e9f467a0cbc3a5555d71ed3f4e7498e21e3"
-  integrity sha512-cjA+GekMsY67xbnshSPUFxYotvC0/KuxkwOt5EPKT/pHDHchvaovM6JTqC5NDp531LJo0GO+v1qE7o8gDapexQ==
+"@codification/cutwater-build-node@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-node/-/cutwater-build-node-0.6.1.tgz#6f24386366184d1c8d2e8d1a7bca5ee58a7c2ed7"
+  integrity sha512-XiFDO8wI3zRa0hvSAZQIqMWa+MoEwGSa31KEIqPVtggWUWv28NXpvV1F2YCyTyk/2IKICSFFQ/nwYjfAa7IbJg==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.5"
-    "@codification/cutwater-build-typescript" "^0.5.5"
+    "@codification/cutwater-build-core" "^0.6.1"
+    "@codification/cutwater-build-typescript" "^0.6.1"
 
-"@codification/cutwater-build-typescript@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-typescript/-/cutwater-build-typescript-0.5.5.tgz#2584ef8d9e44f43ad555fd983fcec0bee2c3eea1"
-  integrity sha512-Y9KuCgxuYjv7LThqX29DIWv9UEMvgVcs9Z5zTXjGWZQO+iAnYa9ii+cv4RNRBpkgFwj0jl23ch+J2bbs6oKOAw==
+"@codification/cutwater-build-typescript@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-typescript/-/cutwater-build-typescript-0.6.1.tgz#07d8dbc4a70f6bfb9cdd7a5dc5191b3f4ac9d85b"
+  integrity sha512-mtQJKJUy5EEGHoJuzYdpKueWqyzN0CmtxyMIpM6iYLK0GLmyG4ej6Df1f1172xtTap+0L9AynUB3GW6Jd40tjw==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.5"
+    "@codification/cutwater-build-core" "^0.6.1"
     gulp-sourcemaps "^2.6.5"
     gulp-tslint "^8.1.4"
     gulp-typescript "^5.0.1"
@@ -185,41 +193,41 @@
     tslint-config-prettier "^1.18.0"
     typescript "^3.5.2"
 
-"@codification/cutwater-build-web@^0.5.0":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-web/-/cutwater-build-web-0.5.5.tgz#19a34cf955a05815aed487ea20f971810786974d"
-  integrity sha512-l1ZkuIsUN7h3IZKdvHft/zSKMkHDD6ZvCn3sjmRdOZ6YUgcF/PY/5aQv5J/f4DIQA30KK64HCoIhienUprcucg==
+"@codification/cutwater-build-web@^0.6.0":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-web/-/cutwater-build-web-0.6.1.tgz#5a6832d3dc6b286733cd06bb3a9733043f05c7dc"
+  integrity sha512-qHHnIxtd1EZ52bDG9sUg+r6T7/6w93x/2xOgQPsA3fi+stLFNpGxWNuC2BihV28kAC416tZMWyqGg3Epq7XY1g==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.5"
-    "@codification/cutwater-build-node" "^0.5.5"
-    "@codification/cutwater-build-webpack" "^0.5.5"
+    "@codification/cutwater-build-core" "^0.6.1"
+    "@codification/cutwater-build-node" "^0.6.1"
+    "@codification/cutwater-build-webpack" "^0.6.1"
 
-"@codification/cutwater-build-webpack@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-webpack/-/cutwater-build-webpack-0.5.5.tgz#bf13ddde217c394d0be7a7aec8ffa8322990baca"
-  integrity sha512-YXrpOqL/8TpcsL4vm8Zo31zL1cc4MEIeIHgRm3o3onZcKfIDamZASyr+Bn4ec/Oyumm8M93unl/Y+FY4NiqiCQ==
+"@codification/cutwater-build-webpack@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-webpack/-/cutwater-build-webpack-0.6.1.tgz#815e9a88eb680b3bd52f7ea6ee1420f33da7afb6"
+  integrity sha512-b2fv3JhWra6WdTeDwubHepbj1iR+PCKApT+LUvl0uZEVo2rIlz7aeWsViD2t3DGCej/jLx5TH2aS112DR33iqg==
   dependencies:
-    "@codification/cutwater-build-core" "^0.5.5"
-    "@codification/cutwater-build-node" "^0.5.5"
+    "@codification/cutwater-build-core" "^0.6.1"
+    "@codification/cutwater-build-node" "^0.6.1"
     colors "^1.4.0"
     terser-webpack-plugin "^1.4.1"
     webpack "^4.39.2"
 
-"@codification/cutwater-core@^0.5.2", "@codification/cutwater-core@^0.5.6":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-core/-/cutwater-core-0.5.6.tgz#97c69834b288135bd751a4de62896728b047787f"
-  integrity sha512-LzbiBsSHAOA2Cv5EvK+aixRM5IFXfId/pI6ab6ipM7EfpPk6tnLWkAoHPUT2QJZibh2GNwVlVIMplVWlSTBZ0w==
+"@codification/cutwater-core@^0.6.0", "@codification/cutwater-core@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-core/-/cutwater-core-0.6.1.tgz#98a1cc85e6729f47d31175fce8193c0a1383c304"
+  integrity sha512-nHEFwhaUP4QFZvmq1eoI3mR1IQP5ygaTvok+ODi5G8xvXTUm8XWSDVATxb9gdhdSD8SLdF9OusUDQBtdbYutuw==
   dependencies:
     date-fns "^1.29.0"
   optionalDependencies:
     rxjs "^6.4.0"
 
-"@codification/cutwater-logging@^0.5.2":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-logging/-/cutwater-logging-0.5.6.tgz#cfdd210951aedd7a56534a82356257a4436d1e38"
-  integrity sha512-8uGHIts/KJSyW8u7iLyVmLAoBHExZ/+obGimyMpWxwvMBkOjYbci1gjLjEdbPK9I4fOcPHommSzubBmQaNUEEg==
+"@codification/cutwater-logging@^0.6.0":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-logging/-/cutwater-logging-0.6.1.tgz#518d032e742d0fec1828a320ec0d1f7bd57ebcaf"
+  integrity sha512-tGi7RM/qBjNvXEZfM20SVR2oGvNnMq/hMcT3xx5WdrtNuhwpfObD31O+bQPsDz7y/dUvZZF4XzO57Kb56DJydg==
   dependencies:
-    "@codification/cutwater-core" "^0.5.6"
+    "@codification/cutwater-core" "^0.6.1"
 
 "@gulp-sourcemaps/identity-map@1.X":
   version "1.0.2"
