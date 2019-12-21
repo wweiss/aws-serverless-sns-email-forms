@@ -2,6 +2,14 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 
 Parameters:
+  Stage:
+    Type: String
+    Default: 'Prod'
+    Description: The API Gateway stage to deploy the endpoint under.
+  Path:
+    Type: String
+    Default: '/send'
+    Description: The path to deploy the endpoint to on API Gateway.
   RecipientEmailAddress:
     Type: String
     Description: Email address to receive the form submissions.
@@ -47,7 +55,7 @@ Resources:
   RestApi:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: Prod
+      StageName: !Ref Stage
 
   EmailFormsHandler:
     Type: AWS::Serverless::Function
@@ -64,7 +72,7 @@ Resources:
           Type: Api
           Properties:
             Method: POST
-            Path: /send
+            Path: !Ref Path
             RestApiId: !Ref RestApi
   EmailFormsSNSTopic:
     Type: AWS::SNS::Topic
@@ -78,5 +86,7 @@ Outputs:
     Value: !Ref RestApi
   ApiDomainName:
     Value: !Sub '${RestApi}.execute-api.${AWS::Region}.amazonaws.com'
+  ApiUrl:
+    Value: !Sub 'https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}${Path}'
   FunctionArn:
     Value: !GetAtt EmailFormsHandler.Arn
