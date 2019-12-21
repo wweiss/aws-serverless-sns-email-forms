@@ -4,22 +4,14 @@ Transform: 'AWS::Serverless-2016-10-31'
 Parameters:
   Stage:
     Type: String
-    Default: 'Prod'
+    Default: 'prod'
     Description: The API Gateway stage to deploy the endpoint under.
-  Path:
-    Type: String
-    Default: '/send'
-    Description: The path to deploy the endpoint to on API Gateway.
   RecipientEmailAddress:
     Type: String
     Description: Email address to receive the form submissions.
   TemplateBucketName:
     Type: String
     Description: Name of the S3 Bucket containing the email templates and form validation JSON schemas.
-  CorsDomain:
-    Type: String
-    Default: '*'
-    Description: (Optional) Name of domain to be allowed access to the service.  All domains allowed by default.
   RecaptchaEnabled:
     Type: String
     AllowedValues: 
@@ -72,7 +64,7 @@ Resources:
           Type: Api
           Properties:
             Method: POST
-            Path: !Ref Path
+            Path: '/sns/api/send'
             RestApiId: !Ref RestApi
   EmailFormsSNSTopic:
     Type: AWS::SNS::Topic
@@ -87,6 +79,6 @@ Outputs:
   ApiDomainName:
     Value: !Sub '${RestApi}.execute-api.${AWS::Region}.amazonaws.com'
   ApiUrl:
-    Value: !Sub 'https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}${Path}'
+    Value: !Sub 'https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/api/send'
   FunctionArn:
     Value: !GetAtt EmailFormsHandler.Arn
