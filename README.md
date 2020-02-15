@@ -13,7 +13,7 @@ A serverless application to simplify emailing form submissions using SNS.
 
     ii. The reCaptcha token, if enabled, is verified.
 
-    iii. Finally, the JSON  schema specified by the payload is loaded from S3 used to verify the form fields are 
+    iii. Finally, the JSON  schema specified by the payload is loaded from S3 and used to verify the form fields are 
          valid.
 
 4.  If validation fails, an error is returned.
@@ -67,7 +67,7 @@ registering your site with Google reCaptcha.
 
     iii. Select "reCaptcha v2" for the "reCaptcha type". *Currently, only v2 is supported*.
 
-    iv.  Under "Domains", enter all the domains that you app will operate under.
+    iv.  Under "Domains", enter all the domains that your app will operate under.
 
     v.   Enter you email address under "Owners".
 
