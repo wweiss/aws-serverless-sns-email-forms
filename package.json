@@ -17,17 +17,17 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "@codification/cutwater-core": "^0.6.0",
-    "@codification/cutwater-logging": "^0.6.0",
+    "@codification/cutwater-core": "^0.x",
+    "@codification/cutwater-logging": "^0.x",
     "ajv": "^6.10.2",
     "aws-lambda": "^1.0.5",
     "google-recaptcha": "^1.1.0",
     "mustache": "^3.1.0"
   },
   "devDependencies": {
-    "@codification/cutwater-build-aws": "^0.6.0",
-    "@codification/cutwater-build-core": "^0.6.0",
-    "@codification/cutwater-build-web": "^0.6.0",
+    "@codification/cutwater-build-aws": "^0.x",
+    "@codification/cutwater-build-core": "^0.x",
+    "@codification/cutwater-build-web": "^0.x",
     "@types/aws-lambda": "^8.10.36",
     "aws-sdk": "^2.573.0"
   }
