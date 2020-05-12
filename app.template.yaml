@@ -1,10 +1,10 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: 'AWS::Serverless-2016-10-31'
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
 
 Parameters:
   Stage:
     Type: String
-    Default: 'prod'
+    Default: "prod"
     Description: The API Gateway stage to deploy the endpoint under.
   RecipientEmailAddress:
     Type: String
@@ -12,16 +12,31 @@ Parameters:
   TemplateBucketName:
     Type: String
     Description: Name of the S3 Bucket containing the email templates and form validation JSON schemas.
+  CorsEnabled:
+    Type: String
+    AllowedValues:
+      - "true"
+      - "false"
+    Default: "false"
+    Description: (Optional) If enabled, CORS will be enabled.  Please see the CorsHeaders and CorsOrigins parameters.
+  CorsHeaders:
+    Type: CommaDelimitedList
+    Default: "*"
+    Description: (Optional) Values to be returned in the Access-Control-Allow-Headers header if CorsEnabled is true.
+  CorsOrigins:
+    Type: CommaDelimitedList
+    Default: "*"
+    Description: (Optional) Valid origins to be matched in the Access-Control-Allow-Origin header if CorsEnabled is true.
   RecaptchaEnabled:
     Type: String
-    AllowedValues: 
-      - 'true'
-      - 'false'
-    Default: 'false'
+    AllowedValues:
+      - "true"
+      - "false"
+    Default: "false"
     Description: (Optional) Flag indicating if a Google Recaptcha token should be validated.
   RecaptchaSecretKey:
     Type: String
-    Default: ''
+    Default: ""
     NoEcho: true
     Description: (Optional) Secret key for use with Google Recaptcha.
 
@@ -33,10 +48,13 @@ Globals:
     Timeout: 60
     Environment:
       Variables:
+        CORS_ENABLED: !Ref CorsEnabled
+        CORS_HEADERS: !Join [",", !Ref CorsHeaders]
+        CORS_ORIGINS: !Join [",", !Ref CorsOrigins]
         TEMPLATE_BUCKET_NAME: !Ref TemplateBucket
         RECAPTCHA_ENABLED: !Ref RecaptchaEnabled
         RECAPTCHA_SECRET_KEY: !Ref RecaptchaSecretKey
-        SNS_TOPIC_ARN: !Ref EmailFormsSNSTopic   
+        SNS_TOPIC_ARN: !Ref EmailFormsSNSTopic
 
 Resources:
   TemplateBucket:
@@ -64,21 +82,27 @@ Resources:
           Type: Api
           Properties:
             Method: POST
-            Path: '/sns/api/send'
+            Path: "/sns/api/send"
+            RestApiId: !Ref RestApi
+        PreflightApi:
+          Type: Api
+          Properties:
+            Method: OPTIONS
+            Path: "/sns/api/send"
             RestApiId: !Ref RestApi
   EmailFormsSNSTopic:
     Type: AWS::SNS::Topic
     Properties:
       Subscription:
         - Endpoint: !Ref RecipientEmailAddress
-          Protocol: 'email'
+          Protocol: "email"
 
 Outputs:
   ApiId:
     Value: !Ref RestApi
   ApiDomainName:
-    Value: !Sub '${RestApi}.execute-api.${AWS::Region}.amazonaws.com'
+    Value: !Sub "${RestApi}.execute-api.${AWS::Region}.amazonaws.com"
   ApiUrl:
-    Value: !Sub 'https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/api/send'
+    Value: !Sub "https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/api/send"
   FunctionArn:
     Value: !GetAtt EmailFormsHandler.Arn
