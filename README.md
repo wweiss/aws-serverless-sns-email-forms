@@ -49,6 +49,14 @@ In addition to the Etsy API key parameter, the app also requires some of the fol
 
 5.  **RecaptchaSecretKey** (optional) - The secret key provided by Google.  Please see details below. Default: empty.
 
+6.  **CorsEnabled** (optional) - Indicates if CORS headers will be returned. Default: false.
+
+7.  **CorsOrigins** (optional) - If **CordEnabled** is `true`, this is a comma delimited list of approved origins. The 
+    incoming origin is matched against the list and is returned if present. Default: *.
+
+8.  **CorsHeaders** (optional) - If **CordEnabled** is `true`, this is a comma delimited list of approved headers. 
+    Default: *.
+
 ## Enabling Google reCaptcha
 
 In order to enable reCaptcha functionality, you will first need a secret key. The following steps walk you through 
