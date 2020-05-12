@@ -51,10 +51,10 @@ In addition to the Etsy API key parameter, the app also requires some of the fol
 
 6.  **CorsEnabled** (optional) - Indicates if CORS headers will be returned. Default: false.
 
-7.  **CorsOrigins** (optional) - If **CordEnabled** is `true`, this is a comma delimited list of approved origins. The 
+7.  **CorsOrigins** (optional) - If **CorsEnabled** is `true`, this is a comma delimited list of approved origins. The 
     incoming origin is matched against the list and is returned if present. Default: *.
 
-8.  **CorsHeaders** (optional) - If **CordEnabled** is `true`, this is a comma delimited list of approved headers. 
+8.  **CorsHeaders** (optional) - If **CorsEnabled** is `true`, this is a comma delimited list of approved headers. 
     Default: *.
 
 ## Enabling Google reCaptcha
