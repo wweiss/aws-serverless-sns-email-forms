@@ -19,6 +19,8 @@
   "dependencies": {
     "@codification/cutwater-core": "^0.x",
     "@codification/cutwater-logging": "^0.x",
+    "@middy/core": "^1.0.0",
+    "@middy/http-cors": "^1.0.0",
     "ajv": "^6.10.2",
     "aws-lambda": "^1.0.5",
     "google-recaptcha": "^1.1.0",
