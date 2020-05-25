@@ -9,13 +9,15 @@ const MISSING_PROPERTY: string = 'missingProperty';
 const ADDIONTIAL_PROPERTY: string = 'additionalProperty';
 
 export class AJVValidatorFactory extends DocumentLoaderBasedFactory implements ValidatorFactory {
-  public loadValidator(schema: string | object): Promise<Validator> {
+  public async loadValidator(schema: string | object): Promise<Validator> {
     if (typeof schema === 'object') {
-      return Promise.resolve(new AJVValidator(schema));
+      return new AJVValidator(schema);
     } else {
-      return this.loadDocument(`${schema}.schema.json`).then(document => {
-        return new AJVValidator(JSON.parse(document));
-      });
+      try {
+        return new AJVValidator(JSON.parse(await this.loadDocument(`${schema}.schema.json`)));
+      } catch (err) {
+        throw new Error(`Failed to create validator from schema[${schema}] with the following error: ${err.message}`);
+      }
     }
   }
 }
@@ -29,24 +31,23 @@ class AJVValidator implements Validator {
     this.validator = ajv.compile(schema);
   }
 
-  public validate(model: NameValueModel): Promise<void> {
+  public async validate(model: NameValueModel): Promise<void> {
     const isValid = this.validator(model);
     if (typeof isValid === 'boolean') {
-      return this.toValidationResult(isValid);
+      this.toValidationResult(isValid);
     } else {
-      return isValid.then(result => this.toValidationResult(result)) as Promise<void>;
+      this.toValidationResult(await isValid);
     }
   }
 
-  private toValidationResult(isValid: boolean): Promise<void> {
+  private toValidationResult(isValid: boolean): void {
     if (this.validator.errors) {
       LOG.debug('Validation failed: ', this.validator.errors);
       const rval: ValidationFailure = { invalidFields: [], missingFields: [] };
       rval.invalidFields = this.toInvalidFields(this.validator.errors);
       rval.missingFields = this.toMissingFields(this.validator.errors);
-      return Promise.reject(rval);
+      throw rval;
     }
-    return Promise.resolve();
   }
 
   private toInvalidFields(errors: Ajv.ErrorObject[]): string[] {

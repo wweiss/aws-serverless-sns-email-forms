@@ -1,7 +1,7 @@
 import { Logger, LoggerFactory } from '@codification/cutwater-logging';
 import middy from '@middy/core';
 import cors from '@middy/http-cors';
-import { APIGatewayProxyEvent, Context } from 'aws-lambda';
+import { APIGatewayEvent, APIGatewayProxyEvent, Context } from 'aws-lambda';
 import { AppConfig } from '../AppConfig';
 import { DocumentLoader, S3DocumentLoader } from '../document';
 import { EmailFormSender } from '../EmailFormSender';
@@ -21,8 +21,8 @@ const messageSender: MessageSender = new SNSMessageSender();
 const sender: EmailFormSender = new EmailFormSender(messageFactory, messageSender);
 
 const baseHandler = async (event: APIGatewayProxyEvent, context: Context) => {
-  const msgCommand: MessageCommand = JSON.parse(event.body || '');
   try {
+    const msgCommand: MessageCommand = toMessageCommand(event);
     await sender.send(msgCommand);
     LOG.debug('Email sent from: ', msgCommand.from);
     return { statusCode: 200, body: '' };
@@ -38,10 +38,19 @@ const baseHandler = async (event: APIGatewayProxyEvent, context: Context) => {
       return {
         statusCode: 500,
         body: JSON.stringify({
-          errors: { internal: 'Server error delivering message.' },
+          errors: { internal: 'Server error delivering message, see logs for details.' },
         }),
       };
     }
+  }
+};
+
+const toMessageCommand = (event: APIGatewayEvent): MessageCommand => {
+  try {
+    return JSON.parse(event.body || '');
+  } catch (err) {
+    LOG.error('Failed to parse form submission.  Event body: ', event.body);
+    throw new Error(`Failed to parse form submission event as a proper JSON object: ${err.message}`);
   }
 };
 

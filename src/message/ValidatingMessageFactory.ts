@@ -6,17 +6,15 @@ import { MessageTransformer } from './MessageTransformer';
 export class ValidatingMessageFactory implements MessageFactory {
   constructor(private messageValidator: Validator, private messageTransformer: MessageTransformer) {}
 
-  public createMessage(cmd: MessageCommand): Promise<Message> {
+  public async createMessage(cmd: MessageCommand): Promise<Message> {
     return this.messageValidator.validate(cmd).then(() => this.generateMessage(cmd));
   }
 
-  private generateMessage(cmd: MessageCommand): Promise<Message> {
-    return this.messageTransformer.transform(cmd).then(body => {
-      return Promise.resolve({
-        from: cmd.from,
-        subject: cmd.subject,
-        body,
-      });
-    });
+  private async generateMessage(cmd: MessageCommand): Promise<Message> {
+    return {
+      body: await this.messageTransformer.transform(cmd),
+      from: cmd.from,
+      subject: cmd.subject,
+    };
   }
 }
