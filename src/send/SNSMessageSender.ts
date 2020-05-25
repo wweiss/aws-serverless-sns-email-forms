@@ -7,7 +7,7 @@ const sns = new SNS();
 
 export class SNSMessageSender implements MessageSender {
   public async send(message: Message): Promise<void> {
-    sns
+    await sns
       .publish({
         Message: message.body,
         Subject: message.subject,
