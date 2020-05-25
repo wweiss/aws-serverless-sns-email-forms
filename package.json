@@ -1,6 +1,6 @@
 {
   "name": "aws-serverless-sns-email-forms",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A serverless application to simplify emailing form submissions using SNS.",
   "main": "lib/lambda/EmailFormHandler.ts",
   "author": "William Weiss <william@codification.org>",
