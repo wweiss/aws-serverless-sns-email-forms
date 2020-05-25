@@ -57,6 +57,35 @@ In addition to the Etsy API key parameter, the app also requires some of the fol
 8.  **CorsHeaders** (optional) - If **CorsEnabled** is `true`, this is a comma delimited list of approved headers. 
     Default: *.
 
+### Adjusting the Logging Level
+
+After deploying the application, the logging level can be adjusted by:
+
+1. Accessing your [AWS Console](https://aws.amazon.com)
+
+2. Click on **Services** in the header and then select **Compute > Lambda**
+
+3. Find the SNS Email lambda function in the list and click it.
+
+4. On the first screen, **Configuration**, scroll down to **Environment variables**
+
+5. Click **Edit** in the upper right corner
+
+    1. Click **Add environement variable** at the bottom of the list
+
+    2. Enter **LOGGING_LEVEL** as the key and one of the following values:
+    
+            - ALL
+            - TRACE
+            - DEBUG
+            - INFO
+            - WARN
+            - ERROR
+
+    3. Click **Save**
+
+Please note that you may have to wait for a new instance of the lambda to be created for your changes to take effect.
+
 ## Enabling Google reCaptcha
 
 In order to enable reCaptcha functionality, you will first need a secret key. The following steps walk you through 
