@@ -21,16 +21,17 @@
     "@codification/cutwater-logging": "^0.x",
     "@middy/core": "^1.0.0",
     "@middy/http-cors": "^1.0.0",
-    "ajv": "^6.10.2",
-    "aws-lambda": "^1.0.5",
+    "ajv": "^7.0.2",
+    "ajv-formats": "^1.5.1",
+    "aws-lambda": "^1.0.6",
     "google-recaptcha": "^1.1.0",
-    "mustache": "^3.1.0"
+    "mustache": "^4.1.0"
   },
   "devDependencies": {
     "@codification/cutwater-build-aws": "^0.x",
     "@codification/cutwater-build-core": "^0.x",
     "@codification/cutwater-build-web": "^0.x",
-    "@types/aws-lambda": "^8.10.36",
-    "aws-sdk": "^2.573.0"
+    "@types/aws-lambda": "^8.10.68",
+    "aws-sdk": "^2.817.0"
   }
 }
