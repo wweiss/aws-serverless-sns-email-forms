@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 const path = require("path");
-const buildConfig = require('@codification/cutwater-build-core').getConfig();
+const buildConfig = require('@codification/cutwater-build-web').getConfig();
 const isProduction = buildConfig.production;
 const webpackConfiguration = {
     mode: isProduction ? 'production' : 'development',

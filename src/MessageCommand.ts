@@ -9,6 +9,7 @@ export interface MessageCommand extends NameValueModel {
 }
 
 export const MessageCommandSchema: any = {
+  type: 'object',
   required: ['form', 'from', 'subject', 'messageModel'],
   properties: {
     form: { type: 'string' },
