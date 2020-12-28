@@ -279,21 +279,21 @@
     minimist "^1.2.0"
 
 "@codification/cutwater-build-aws@^0.x":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-aws/-/cutwater-build-aws-0.23.1.tgz#b3c70d43f408e80569bba5e968a63be0cf6c1f62"
-  integrity sha512-5H5ze9riAVtF4l87uBlGQld4f7rgR0D2qq801t8vXuUSE0fmoB72CcL0AKP9rX3yIOLdPkPTC7qaUMQ7py4rTA==
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-aws/-/cutwater-build-aws-0.23.2.tgz#87a36adcfdd04aa66f516d42b2b76420f1ab3fd4"
+  integrity sha512-79RtExe5qYzBcY/9/a0NgoLe+K34zVnB+ln4ot0K4cUvVi3L7TI0cyGQDnsGzMZfkj5WHmczuleRXTbb2nuSIQ==
   dependencies:
-    "@codification/cutwater-build-core" "^0.23.1"
-    "@codification/cutwater-build-node" "^0.23.1"
-    "@codification/cutwater-build-openapi" "^0.23.1"
+    "@codification/cutwater-build-core" "^0.23.2"
+    "@codification/cutwater-build-node" "^0.23.2"
+    "@codification/cutwater-build-openapi" "^0.23.2"
     aws-sdk "^2.817.0"
     md5 "^2.2.1"
     yaml-cfn "^0.2.3"
 
-"@codification/cutwater-build-core@^0.23.1", "@codification/cutwater-build-core@^0.x":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-core/-/cutwater-build-core-0.23.1.tgz#c746909032289d12e50c8360f74bab560feda7e9"
-  integrity sha512-PUhyDVWMijvqKvRNhK5pJrAEC5gzk8iW8B5o4aaDnIdLwUVqL9ZZLrBc5hJ833RWU6s2insHsORmv8fPyy7WGg==
+"@codification/cutwater-build-core@^0.23.2", "@codification/cutwater-build-core@^0.x":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-core/-/cutwater-build-core-0.23.2.tgz#77386515e91dcad4dc553476c7ff390f0b8b7a5e"
+  integrity sha512-QtHpeI8C10kI9A6s/jfiCUZqf3kuOeyGl4wCTah1J0y6gzYPTm7i1CgygHbhZtsHyCfpkAZtG8td0CBz8RSjFw==
   dependencies:
     "@types/gulp" "^4.0.7"
     "@types/jest" "^26.x"
@@ -318,69 +318,69 @@
     yaml "^1.8.3"
     yargs "^14.0.0"
 
-"@codification/cutwater-build-node@^0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-node/-/cutwater-build-node-0.23.1.tgz#542e43dd9866d1ba8c44df275091da4786184bb8"
-  integrity sha512-ejA0Uks30EcBTiVB447xLb51d802IeUQQxF9ISGNEfQwHv95eWvDGbN+3N1Zmc2Oj+bZDWWZtNQwThRkSi+HDg==
+"@codification/cutwater-build-node@^0.23.2":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-node/-/cutwater-build-node-0.23.2.tgz#dedcd93b58dc35f50c478f72fbacdc5b0d29799e"
+  integrity sha512-lL3mhSlteNa7h92avJErQNUA1HAZMhviDZNr6hOS6H8gfPT8kTyUP4jEaTaRz957CWlTzq0tD57tN/sHSLq8fg==
   dependencies:
-    "@codification/cutwater-build-core" "^0.23.1"
-    "@codification/cutwater-build-typescript" "^0.23.1"
+    "@codification/cutwater-build-core" "^0.23.2"
+    "@codification/cutwater-build-typescript" "^0.23.2"
 
-"@codification/cutwater-build-openapi@^0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-openapi/-/cutwater-build-openapi-0.23.1.tgz#b39eb8c51867291e679bd089c5cb749cdacb19be"
-  integrity sha512-98kZuMf6mzpC7BpOL80C8M0y+Pjm31ScbrtDX1Cp0wDNOgkm9GCAWJzJWAJhxnGRD17Eb9C1j1kWkfKQHk870Q==
+"@codification/cutwater-build-openapi@^0.23.2":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-openapi/-/cutwater-build-openapi-0.23.2.tgz#60e8dd8b54885acabc9dd267052f1aeda6518414"
+  integrity sha512-RRi8BT3WrDgMyjHtOthzIBSGcTFhe38bJ1JsMtTGaAoaUU18hSWlH7F5Yd28uQQgRnD7g/fC4l86Py2Rrv79+g==
   dependencies:
-    "@codification/cutwater-build-core" "^0.23.1"
-    "@codification/cutwater-build-node" "^0.23.1"
+    "@codification/cutwater-build-core" "^0.23.2"
+    "@codification/cutwater-build-node" "^0.23.2"
     swagger-cli "^2.3.0"
 
-"@codification/cutwater-build-typescript@^0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-typescript/-/cutwater-build-typescript-0.23.1.tgz#d33189e42660adcd00cd6b3e83f8dbfb12c18e64"
-  integrity sha512-aoKdcvbS7NzJ+7Tsejzewg96s2wO9lLUZXi/s7K92N4M745hLz9IqUaObKE6mo9hZB48AhkmG00YohyYaqF88g==
+"@codification/cutwater-build-typescript@^0.23.2":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-typescript/-/cutwater-build-typescript-0.23.2.tgz#d67ea496c9f17795aba0abcc357c59bebf92e41d"
+  integrity sha512-1joEVS+osqb105e+yOWHNcmXdcsBxWR5xEgEz5j5DYv5PkW2AUNewOjoA01J2mpQfNnBffdH/xnZ3j5BBUJ/+w==
   dependencies:
-    "@codification/cutwater-build-core" "^0.23.1"
+    "@codification/cutwater-build-core" "^0.23.2"
     gulp-tslint "^8.1.4"
     tslint "^5.18.0"
     tslint-config-prettier "^1.18.0"
     typescript "^4.1.3"
 
 "@codification/cutwater-build-web@^0.x":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-web/-/cutwater-build-web-0.23.1.tgz#b11e2106b0f60838178c8e2e2bfabc6db7252234"
-  integrity sha512-AayP9RYeBTdxIr1Vtyakm+gP16nkfKy8F9+fZIjkC5gD6GfRcy1AgsD3xdZiZO5eRUQ7UPTw4U8eOzz7Ce/U4A==
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-web/-/cutwater-build-web-0.23.2.tgz#ac2a46ff95cfa041dea13f7b7b0c2216dea62365"
+  integrity sha512-in2iVnyE4CVSO6TaKRBqJLzFlX2PYyFr4zSgfWhQVh5nyzY3SjKtWuVdglkBl4NpVfHCAg/OtSiRrEZvyQc65Q==
   dependencies:
-    "@codification/cutwater-build-core" "^0.23.1"
-    "@codification/cutwater-build-webpack" "^0.23.1"
+    "@codification/cutwater-build-core" "^0.23.2"
+    "@codification/cutwater-build-webpack" "^0.23.2"
     webpack "^4.44.2"
     webpack-dev-server "^3.11.0"
 
-"@codification/cutwater-build-webpack@^0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-webpack/-/cutwater-build-webpack-0.23.1.tgz#09402da851f6275aa2a3e0321c359af7f4a59f62"
-  integrity sha512-5tDhK2X1A4LwhIur84cd+f780YBnHB2j+o110bVOfEtIRSTll953Yv2nq/VSMuQzfyR1w3T4ghLhPmwqQ+pUlA==
+"@codification/cutwater-build-webpack@^0.23.2":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-build-webpack/-/cutwater-build-webpack-0.23.2.tgz#5d21704861f0ef1313115b7746ead861bfab8499"
+  integrity sha512-FrBWP3/ATWkS10It21krX6cpCr0TH4HMnCUq4ftthiq1pVwqO1ScW2KqLk5S442zFCgZSy6yxeAnxq2Y3utxmw==
   dependencies:
-    "@codification/cutwater-build-core" "^0.23.1"
-    "@codification/cutwater-build-node" "^0.23.1"
+    "@codification/cutwater-build-core" "^0.23.2"
+    "@codification/cutwater-build-node" "^0.23.2"
     colors "^1.4.0"
     terser-webpack-plugin "^4.1.0"
     webpack "^4.44.2"
     webpack-cli "^4.3.0"
 
-"@codification/cutwater-core@^0.23.1", "@codification/cutwater-core@^0.x":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-core/-/cutwater-core-0.23.1.tgz#8eeab3675ad432bd3b856484738e50b4cd1a6e09"
-  integrity sha512-A/YMgIrmhmMIUc3cf8uc5Rckyilfro0QA8YcJFkRrRh2lHfSDa43yYE8HksHqet6LQt0uUGlOlidwtpnINUS5A==
+"@codification/cutwater-core@^0.23.2", "@codification/cutwater-core@^0.x":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-core/-/cutwater-core-0.23.2.tgz#771b5e3c2302c120f67724c81c1e5d5c1b209c70"
+  integrity sha512-tllFj5r1wZQ0+aAYSvb9JoZ8FFJSRH8fzdOHJTpwWvbJ1jt6p84X5OT1MY1VUL/HoNILRg8YmRdsrUff3HA3nQ==
   dependencies:
     date-fns "^1.29.0"
 
 "@codification/cutwater-logging@^0.x":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@codification/cutwater-logging/-/cutwater-logging-0.23.1.tgz#fa31a1e33f52e95ab2a191b78c17769f29c909b3"
-  integrity sha512-AI7OWPNHNkF4quup7GNwV9R/OTnX/fcbQ7OISarsW2qTE3KIS0Jb5q/TfI8dsjmH1sPS8PR8Za2XhsGwoUhMrg==
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@codification/cutwater-logging/-/cutwater-logging-0.23.2.tgz#6e7e4c37929b289164d3736dc9c72199d06db077"
+  integrity sha512-pKa/Omd5ObArSGiPiqKlXNqL6rGirov36Jg0C8bqdc5jO4xXIkM7CTiG81r9ecTvwRMPY8kUTQcPw7cqzXfLGw==
   dependencies:
-    "@codification/cutwater-core" "^0.23.1"
+    "@codification/cutwater-core" "^0.23.2"
 
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.2"
@@ -1356,9 +1356,9 @@ aws-lambda@^1.0.6:
     watchpack "^2.0.0-beta.10"
 
 aws-sdk@*, aws-sdk@^2.817.0:
-  version "2.817.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.817.0.tgz#3a97b690b0ec494cf8ee927affb3973cf26abcc8"
-  integrity sha512-DZIdWpkcqbqsCz0MEskHsyFaqc6Tk9XIFqXAg1AKHbOgC8nU45bz+Y2osX77pU01JkS/G7OhGtGmlKDrOPvFwg==
+  version "2.818.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.818.0.tgz#5e71742f2a2727dc313458071e6e5a343fc08d85"
+  integrity sha512-xxIEdaKXtrEZNVUvKiW8MRj1Ux2tH/ubDLl8+tnrfhNOJbq5u5FfD56Kui4Ca+CG4xamQ5LaBktVYWAEyaMtUw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
