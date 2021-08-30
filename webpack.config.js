@@ -3,19 +3,38 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 const path = require("path");
-const buildConfig = require('@codification/cutwater-build-core').getConfig();
+const webpack = require('webpack');
+const buildConfig = require('@codification/cutwater-build-web').getConfig();
 const isProduction = buildConfig.production;
 const webpackConfiguration = {
     mode: isProduction ? 'production' : 'development',
     entry: {
-        'sns-email-forms': path.join(__dirname, buildConfig.libES6Folder, 'lambda', 'EmailFormHandler.js')
+        'sns-email-forms': path.join(__dirname, buildConfig.srcFolder, 'lambda', 'EmailFormHandler.ts')
     },
     output: {
         libraryTarget: 'umd',
         path: path.join(__dirname, buildConfig.distFolder),
         filename: `[name].js`,
+        sourceMapFilename: "[name].js.map"
     },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
+    devtool: isProduction ? undefined : 'inline-source-map',
+    optimization: {
+        minimize: false,
+    },
+    target: 'node',
     externals: ['aws-sdk'],
-    target: 'node'
+    plugins: [new webpack.IgnorePlugin(/^electron$/)]
 };
 module.exports = webpackConfiguration;

@@ -7,14 +7,28 @@
   "license": "MIT",
   "private": false,
   "prettier": "@codification/cutwater-build-core/includes/prettier-config",
+  "eslintConfig": {
+    "extends": [
+      "@codification/cutwater"
+    ]
+  },
   "scripts": {
     "clean": "gulp clean",
     "test": "gulp test --clean",
+    "test-integ": "gulp test-integ --clean",
     "build": "gulp --clean --production",
-    "package": "yarn build && gulp cloudformation-package",
-    "preversion": "yarn build",
-    "version": "git add -A .",
-    "postversion": "git push && git push --tags"
+    "package": "gulp sam-package",
+    "publish:aws": "gulp sam-publish",
+    "release": "standard-version"
+  },
+  "standard-version": {
+    "scripts": {
+      "posttag": "git push && git push --tags"
+    },
+    "releaseCommitMessageFormat": "chore(release): {{currentTag}} [skip-ci]"
+  },
+  "resolutions": {
+    "glob-parent": "^5.1.2"
   },
   "dependencies": {
     "@codification/cutwater-core": "^0.x",
@@ -31,6 +45,7 @@
     "@codification/cutwater-build-core": "^0.x",
     "@codification/cutwater-build-web": "^0.x",
     "@types/aws-lambda": "^8.10.36",
-    "aws-sdk": "^2.573.0"
+    "aws-sdk": "^2.573.0",
+    "standard-version": "^9.3.1"
   }
 }

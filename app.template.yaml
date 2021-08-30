@@ -1,6 +1,19 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: "AWS::Serverless-2016-10-31"
 
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: SnsEmailForms
+    Description: "A serverless app the handles the receipt, validation (including the option of using ReCaptcha) and formatting of messages before sending them via email using SNS."
+    Author: William Weiss
+    SpdxLicenseId: MIT
+    LicenseUrl: LICENSE
+    ReadmeUrl: README.md
+    Labels: ['forms','email','validation','template','mustache','sns','s3','lambda','recaptcha']
+    HomePageUrl: https://github.com/wweiss/aws-serverless-sns-email-forms
+    SemanticVersion: 0.0.1
+    SourceCodeUrl: https://github.com/wweiss/aws-serverless-sns-email-forms
+
 Parameters:
   Stage:
     Type: String
