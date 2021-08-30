@@ -1,5 +1,6 @@
 import { Logger, LoggerFactory } from '@codification/cutwater-logging';
-import * as Ajv from 'ajv';
+import Ajv, { ErrorObject, ValidateFunction } from 'ajv';
+import addFormats from 'ajv-formats';
 import { DocumentLoaderBasedFactory } from '../document';
 import { NameValueModel } from '../NameValueModel';
 import { ValidationFailure, Validator, ValidatorFactory } from './ValidatorFactory';
@@ -24,10 +25,11 @@ export class AJVValidatorFactory extends DocumentLoaderBasedFactory implements V
 
 // tslint:disable-next-line: max-classes-per-file
 class AJVValidator implements Validator {
-  private validator: Ajv.ValidateFunction;
+  private validator: ValidateFunction;
 
   constructor(schema: Record<string, unknown>) {
     const ajv = new Ajv({ allErrors: true });
+    addFormats(ajv);
     this.validator = ajv.compile(schema);
   }
 
@@ -49,7 +51,7 @@ class AJVValidator implements Validator {
     }
   }
 
-  private toInvalidFields(errors: Ajv.ErrorObject[]): string[] {
+  private toInvalidFields(errors: ErrorObject[]): string[] {
     const rval: string[] = [];
     errors.forEach(error => {
       if (error.dataPath.trim().length > 0) {
@@ -61,7 +63,7 @@ class AJVValidator implements Validator {
     return rval;
   }
 
-  private toMissingFields(errors: Ajv.ErrorObject[]): string[] {
+  private toMissingFields(errors: ErrorObject[]): string[] {
     const rval: string[] = [];
     errors.forEach(error => {
       if (error.params && error.params[MISSING_PROPERTY]) {
