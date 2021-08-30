@@ -14,5 +14,5 @@ export interface Validator {
 }
 
 export interface ValidatorFactory {
-  loadValidator(schema: string | object): Promise<Validator>;
+  loadValidator(schema: string | Record<string, unknown> | Validator): Promise<Validator>;
 }

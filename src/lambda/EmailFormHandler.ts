@@ -1,7 +1,7 @@
 import { Logger, LoggerFactory } from '@codification/cutwater-logging';
 import middy from '@middy/core';
 import cors from '@middy/http-cors';
-import { APIGatewayEvent, APIGatewayProxyEvent, Context } from 'aws-lambda';
+import { APIGatewayEvent, APIGatewayProxyEvent } from 'aws-lambda';
 import { AppConfig } from '../AppConfig';
 import { DocumentLoader, S3DocumentLoader } from '../document';
 import { EmailFormSender } from '../EmailFormSender';
@@ -20,7 +20,7 @@ const messageFactory: MessageFactory = new ValidatingMessageFactory(validator, n
 const messageSender: MessageSender = new SNSMessageSender();
 const sender: EmailFormSender = new EmailFormSender(messageFactory, messageSender);
 
-const baseHandler = async (event: APIGatewayProxyEvent, context: Context) => {
+const baseHandler = async (event: APIGatewayProxyEvent) => {
   try {
     const msgCommand: MessageCommand = toMessageCommand(event);
     await sender.send(msgCommand);

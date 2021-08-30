@@ -5,11 +5,11 @@ import { NameValueModel } from '../NameValueModel';
 import { ValidationFailure, Validator, ValidatorFactory } from './ValidatorFactory';
 
 const LOG: Logger = LoggerFactory.getLogger();
-const MISSING_PROPERTY: string = 'missingProperty';
-const ADDIONTIAL_PROPERTY: string = 'additionalProperty';
+const MISSING_PROPERTY = 'missingProperty';
+const ADDIONTIAL_PROPERTY = 'additionalProperty';
 
 export class AJVValidatorFactory extends DocumentLoaderBasedFactory implements ValidatorFactory {
-  public async loadValidator(schema: string | object): Promise<Validator> {
+  public async loadValidator(schema: string | Record<string, unknown>): Promise<Validator> {
     if (typeof schema === 'object') {
       return new AJVValidator(schema);
     } else {
@@ -26,21 +26,20 @@ export class AJVValidatorFactory extends DocumentLoaderBasedFactory implements V
 class AJVValidator implements Validator {
   private validator: Ajv.ValidateFunction;
 
-  constructor(schema: object) {
+  constructor(schema: Record<string, unknown>) {
     const ajv = new Ajv({ allErrors: true });
     this.validator = ajv.compile(schema);
   }
 
   public async validate(model: NameValueModel): Promise<void> {
     const isValid = this.validator(model);
-    if (typeof isValid === 'boolean') {
-      this.toValidationResult(isValid);
-    } else {
-      this.toValidationResult(await isValid);
+    if (typeof isValid !== 'boolean') {
+      await isValid;
     }
+    this.toValidationResult();
   }
 
-  private toValidationResult(isValid: boolean): void {
+  private toValidationResult(): void {
     if (this.validator.errors) {
       LOG.debug('Validation failed: ', this.validator.errors);
       const rval: ValidationFailure = { invalidFields: [], missingFields: [] };
