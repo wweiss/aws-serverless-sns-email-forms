@@ -14,39 +14,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
       - uses: actions/setup-python@v2
         with:
           python-version: "3.8"
       - uses: aws-actions/setup-sam@v1
 
-      - name: Configure CI Git User
+      - name: Configure Git User
         run: |
-          git config user.name '@deploy'
-          git config user.email 'deploy@users.noreply.github.com'
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
-      - name: Checkout and pull branch
-        run: git checkout master && git pull
-
-      - name: Get yarn cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Use Node.js 14
+      - name: Configure Node
         uses: actions/setup-node@v2
         with:
+          cache: "yarn"
           node-version: "14"
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Yarn install
+      - name: Install Dependencies
         run: yarn install --frozen-lockfile
-      
+  
       - name: Build
         run:  yarn build
 
